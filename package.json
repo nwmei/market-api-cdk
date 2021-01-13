@@ -7,18 +7,29 @@
   "scripts": {
     "build": "echo \"The build step is not required when using JavaScript!\" && exit 0",
     "cdk": "cdk",
-    "test": "jest"
+    "test": "jest",
+    "start": "nodemon --exec babel-node src/index.js"
   },
   "devDependencies": {
     "@aws-cdk/assert": "1.83.0",
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
     "aws-cdk": "1.83.0",
-    "jest": "^26.4.2"
+    "jest": "^26.4.2",
+    "nodemon": "^2.0.6"
   },
   "dependencies": {
     "@aws-cdk/aws-apigateway": "^1.83.0",
     "@aws-cdk/aws-lambda": "^1.83.0",
     "@aws-cdk/core": "1.83.0",
+    "apollo-server-express": "^2.18.2",
     "apollo-server-lambda": "^2.19.1",
-    "graphql": "^15.4.0"
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "graphql": "^15.4.0",
+    "mongodb": "^3.6.3",
+    "mongoose": "^5.10.9"
   }
 }
