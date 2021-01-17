@@ -3,27 +3,22 @@ const { connectToMongoDb } = require('./utils/functions');
 const { typeDefs } = require('./src/typedefs');
 const { resolvers } = require('./src/resolvers');
 const mongoose = require('mongoose');
-const { MongoClient } = require('mongodb');
 const {SSL_CERTIFICATE} = require('./utils/config');
 
 
-//connectToMongoDb().then(() => console.log("connect mongo promise responded"));
+const conn = mongoose.connect('mongodb+srv://market-api:zxBPlyAJ4mGbtSUG@cma-db-prod-cluster.wdr9z.mongodb.net/market-db?retryWrites=true&w=majority',
+  {useNewUrlParser: true, useUnifiedTopology: true });
 
-const conn = mongoose.connect('mongodb://nwmei:12345678@marketdocdb.cluster-cmwb6x2mbbal.us-east-1.docdb.amazonaws.com:27017',
-  {useNewUrlParser: true, ssl: true, sslCA: SSL_CERTIFICATE, useUnifiedTopology: true });
-
-
+//ssl: true, sslCA: SSL_CERTIFICATE,
+// mongodb://nwmei:12345678@marketdocdb.cluster-cmwb6x2mbbal.us-east-1.docdb.amazonaws.com:27017
+//mongodb+srv://market-api:<password>@cma-db-prod-cluster.wdr9z.mongodb.net/<dbname>?retryWrites=true&w=majority
+// market-api
+//zxBPlyAJ4mGbtSUG
 const server = new ApolloServer({
   typeDefs,
   resolvers,
   playground: true,
   introspection: true
-  // context: ({ event, context }) => ({
-  //   headers: event.headers,
-  //   functionName: context.functionName,
-  //   event,
-  //   context
-  // }),
 });
 
 
