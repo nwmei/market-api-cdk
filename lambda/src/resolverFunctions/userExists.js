@@ -10,6 +10,6 @@ const userExistsResolver = async (_, {input: {emailAddress}}) => {
     exists: (user.length>0),
     id
   });
-}
+};
 
 exports.userExistsResolver = userExistsResolver;

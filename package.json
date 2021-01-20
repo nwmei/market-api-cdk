@@ -8,7 +8,7 @@
     "build": "echo \"The build step is not required when using JavaScript!\" && exit 0",
     "cdk": "cdk",
     "test": "jest",
-    "start": "nodemon --exec babel-node src/index.js"
+    "start": "nodemon --exec babel-node lambda/src/index.js"
   },
   "devDependencies": {
     "@aws-cdk/assert": "1.83.0",

@@ -1,11 +1,11 @@
 const { ApolloServer } =  require("apollo-server-express");
 const express = require('express');
-const { connectToMongoDb } = require('../utils/functions');
+const { connectToLocalMongoDb } = require('../utils/functions');
 const { typeDefs } = require('./typedefs')
 const { resolvers } = require('./resolvers');
 
 const startServer = async () => {
-    await connectToMongoDb();
+    await connectToLocalMongoDb();
 
     const app = express();
 

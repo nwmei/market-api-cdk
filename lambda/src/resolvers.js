@@ -1,8 +1,8 @@
 const { User } =  require('./models/User');
 const { StoreItem } =  require('./models/StoreItem');
-const storeItemResolver = require('./resolverFunctions/storeItem');
-const userExistsResolver = require('./resolverFunctions/userExists');
-const myItemsResolver = require('./resolverFunctions/myItems');
+const { storeItemResolver } = require('./resolverFunctions/storeItem');
+const { userExistsResolver } = require('./resolverFunctions/userExists');
+const { myItemsResolver}  = require('./resolverFunctions/myItems');
 const {campuses} = require('./constants');
 const mongoose = require("mongoose");
 
@@ -48,7 +48,9 @@ const resolvers = {
     user: (_, {id}) => User.findById(id),
     sessionUserDetails: async (_, {input: {accessToken}}) => {
       console.log("session user Query called with: ", accessToken);
+      console.log(campuses.Gmail)
       const x = await User.find({accessToken});
+      console.log(x)
       return x.length>0? x[0]: null;
     },
     userExists: userExistsResolver,

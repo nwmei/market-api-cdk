@@ -4,7 +4,8 @@ const campuses = {
   'Umass Amherst': 'umass',
   'MIT': 'mit',
   'Bentley University': 'bentley',
-  'Gmail': 'gmail'
-}
+  'Gmail': 'gmail',
+  'MCPHS': 'mcphs'
+};
 
 exports.campuses = campuses;
