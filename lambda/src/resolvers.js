@@ -4,7 +4,6 @@ const { storeItemResolver } = require('./resolverFunctions/storeItem');
 const { userExistsResolver } = require('./resolverFunctions/userExists');
 const { myItemsResolver}  = require('./resolverFunctions/myItems');
 const {campuses} = require('./constants');
-const mongoose = require("mongoose");
 
 const resolvers = {
   Query: {
@@ -48,9 +47,7 @@ const resolvers = {
     user: (_, {id}) => User.findById(id),
     sessionUserDetails: async (_, {input: {accessToken}}) => {
       console.log("session user Query called with: ", accessToken);
-      console.log(campuses.Gmail)
       const x = await User.find({accessToken});
-      console.log(x)
       return x.length>0? x[0]: null;
     },
     userExists: userExistsResolver,
@@ -94,6 +91,11 @@ const resolvers = {
       await User.findOneAndUpdate({accessToken},{accessToken: ''});
       return {success: true};
     },
+    editItem: async (_, {input: {id, name, description, price, imageUrl, category, neighborhood}}) => {
+      console.log("edit item mutation called")
+      await StoreItem.findByIdAndUpdate(id, {name, description, price, imageUrl, category, neighborhood});
+      return {success: true};
+    }
   }
 };
 

@@ -85,6 +85,20 @@ const typeDefs = gql`
         listedPage: Int!,
         filters: [Filter]!,
     }
+    
+    input EditItemInput {
+        id: ID!,
+        name: String!,
+        description: String!,
+        price: Int!,
+        imageUrl: String!,
+        category: String!,
+        neighborhood: String!
+    }
+    
+    input DeleteItemInput {
+        id: ID!
+    }
 
     type Query {
         testQuery: String!,
@@ -104,6 +118,8 @@ const typeDefs = gql`
         unlikeItem(input: LikeItemInput!): Status!
         setAccessToken(input: AccessTokenInput!): Status!,
         clearAccessToken(input: ClearAccessTokenInput!): Status!,
+        editItem(input: EditItemInput!): Status!
+        deleteItem(input: DeleteItemInput!): Status!
     }
 
     type MyItems {
