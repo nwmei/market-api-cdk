@@ -95,6 +95,16 @@ const resolvers = {
       console.log("edit item mutation called")
       await StoreItem.findByIdAndUpdate(id, {name, description, price, imageUrl, category, neighborhood});
       return {success: true};
+    },
+    deleteItem: async (_, {input: {id}}) => {
+      console.log("delete item mutation called");
+      const storeItem = await StoreItem.findById(id);
+      for (let likerId of storeItem.likes) {
+        await User.findByIdAndUpdate(likerId, {$pull: {likedItems: id}})
+      }
+      await User.findByIdAndUpdate(storeItem.seller.id, {$pull: {listedItems: id}})
+      await StoreItem.findByIdAndDelete(id);
+      return {success: true}
     }
   }
 };
