@@ -54,9 +54,9 @@ const resolvers = {
     myItems: myItemsResolver
   },
   Mutation: {
-    createStoreItem: async (_, {input: {name, description, price, imageUrl, seller, category, neighborhood}}) => {
+    createStoreItem: async (_, {input: {name, description, price, imageUrls, seller, category, neighborhood}}) => {
         const date = new Date().getTime().toString();
-        const newStoreItem = new StoreItem({ name, description, price, imageUrl, seller, date, category, neighborhood });
+        const newStoreItem = new StoreItem({ name, description, price, imageUrls, seller, date, category, neighborhood });
         await User.findByIdAndUpdate(seller.id, {$addToSet: {listedItems: newStoreItem._id}});
         return newStoreItem.save();
     },

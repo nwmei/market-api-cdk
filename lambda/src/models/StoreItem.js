@@ -4,12 +4,13 @@ const StoreItem = mongoose.model("StoreItem", {
     name: String,
     description: String,
     price: Number,
-    imageUrl: String,
+    imageUrls: [String],
     seller: {
         id: String,
         firstName: String,
         lastName: String,
-        emailAddress: String
+        emailAddress: String,
+        imageUrl: String
     },
     likes: [String],
     comments: [{

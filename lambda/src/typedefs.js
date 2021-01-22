@@ -22,7 +22,7 @@ const typeDefs = gql`
         description: String!,
         seller: UserInput!,
         price: Int!,
-        imageUrl: String!,
+        imageUrls: [String]!,
         category: String!,
         neighborhood: String!
     }
@@ -132,7 +132,7 @@ const typeDefs = gql`
         name: String!,
         description: String!,
         price: Int!,
-        imageUrl: String!,
+        imageUrls: [String]!,
         seller: User!
         comments: [Comment],
         likes: [ID],
