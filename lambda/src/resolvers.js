@@ -15,7 +15,7 @@ const resolvers = {
         for (let filter of filters) {
           switch (filter.filterType) {
             case "Campus": {
-              const targetEmail = filter.value[0]==='Gmail' ? 'gmail.com' : campuses[filter.value[0]] + '.edu';
+              const targetEmail = filter.value[0]==='Off-Campus' ? '.com' : campuses[filter.value[0]] + '.edu';
               condition.$and.push({"seller.emailAddress": {$regex: `${targetEmail}$`}});
               break;
             }
@@ -91,9 +91,9 @@ const resolvers = {
       await User.findOneAndUpdate({accessToken},{accessToken: ''});
       return {success: true};
     },
-    editItem: async (_, {input: {id, name, description, price, imageUrl, category, neighborhood}}) => {
+    editItem: async (_, {input: {id, name, description, price, imageUrls, category, neighborhood}}) => {
       console.log("edit item mutation called")
-      await StoreItem.findByIdAndUpdate(id, {name, description, price, imageUrl, category, neighborhood});
+      await StoreItem.findByIdAndUpdate(id, {name, description, price, imageUrls, category, neighborhood});
       return {success: true};
     },
     deleteItem: async (_, {input: {id}}) => {

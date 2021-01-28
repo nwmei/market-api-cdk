@@ -37,6 +37,7 @@ const myItemsResolver = async (_, {input: {id, likedPage, listedPage, filters}})
     likedByMe = await StoreItem.find({_id: {$in: user.likedItems}}).skip((likedPage-1)*pageSize).limit(pageSize);
     listedByMe = await StoreItem.find({_id: {$in: user.listedItems}}).skip((listedPage-1)*pageSize).limit(pageSize);
   }
+  console.log(likedByMe)
   return {
     likedByMe, listedByMe
   }

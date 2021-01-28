@@ -91,9 +91,9 @@ const typeDefs = gql`
         name: String!,
         description: String!,
         price: Int!,
-        imageUrl: String!,
-        category: String!,
-        neighborhood: String!
+        imageUrls: [String]!,
+        category: String,
+        neighborhood: String
     }
     
     input DeleteItemInput {

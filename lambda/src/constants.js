@@ -4,7 +4,6 @@ const campuses = {
   'Umass Amherst': 'umass',
   'MIT': 'mit',
   'Bentley University': 'bentley',
-  'Gmail': 'gmail',
   'MCPHS': 'mcphs'
 };
 
