@@ -70,7 +70,6 @@ const resolvers = {
       return {commenterId, commenterFullName, commentText, commenterImageUrl};
     },
     likeItem: async (_, {input: {likerId, storeItemId}}) => {
-      console.log(likerId, storeItemId)
       console.log('like item mutation called')
       await User.findByIdAndUpdate(likerId, {$addToSet: {likedItems: storeItemId}})
       await StoreItem.findByIdAndUpdate(storeItemId, {$addToSet: {likes: likerId}});
@@ -104,6 +103,10 @@ const resolvers = {
       }
       await User.findByIdAndUpdate(storeItem.seller.id, {$pull: {listedItems: id}})
       await StoreItem.findByIdAndDelete(id);
+      return {success: true}
+    },
+    deleteComment: async (_, {input: {itemId, commentId}}) => {
+      await StoreItem.findByIdAndUpdate(itemId, {$pull: {comments: {_id: commentId}}});
       return {success: true}
     }
   }

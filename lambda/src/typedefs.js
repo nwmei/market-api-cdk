@@ -99,6 +99,11 @@ const typeDefs = gql`
     input DeleteItemInput {
         id: ID!
     }
+    
+    input DeleteCommentInput {
+        itemId: String!,
+        commentId: String!
+    }
 
     type Query {
         testQuery: String!,
@@ -118,8 +123,9 @@ const typeDefs = gql`
         unlikeItem(input: LikeItemInput!): Status!
         setAccessToken(input: AccessTokenInput!): Status!,
         clearAccessToken(input: ClearAccessTokenInput!): Status!,
-        editItem(input: EditItemInput!): Status!
-        deleteItem(input: DeleteItemInput!): Status!
+        editItem(input: EditItemInput!): Status!,
+        deleteItem(input: DeleteItemInput!): Status!,
+        deleteComment(input: DeleteCommentInput!): Status!,
     }
 
     type MyItems {
@@ -162,6 +168,7 @@ const typeDefs = gql`
     }
 
     type Comment {
+        id: ID,
         commenterFullName: String!,
         commenterId: ID!,
         commentText: String!,
