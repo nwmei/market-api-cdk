@@ -134,17 +134,17 @@ const typeDefs = gql`
     }
 
     type StoreItem {
-        id: ID!,
-        name: String!,
-        description: String!,
-        price: Int!,
-        imageUrls: [String]!,
-        seller: User!
+        id: ID,
+        name: String,
+        description: String,
+        price: Int,
+        imageUrls: [String],
+        seller: User
         comments: [Comment],
         likes: [ID],
         date: String,
-        category: String!,
-        neighborhood: String!
+        category: String,
+        neighborhood: String
     }
 
     type Status {
