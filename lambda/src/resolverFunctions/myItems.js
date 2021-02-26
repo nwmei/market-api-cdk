@@ -11,7 +11,7 @@ const myItemsResolver = async (_, {input: {id, likedPage, listedPage, filters}})
     for (let filter of filters) {
       switch (filter.filterType) {
         case "Campus": {
-          const targetEmail = filter.value[0]==='Gmail' ? 'gmail.com' : campuses[filter.value[0]] + '.edu';
+          const targetEmail = filter.value[0]==='off-campus' ? '.com' : filter.value[0] + '.edu';
           condition.$and.push({"seller.emailAddress": {$regex: `${targetEmail}$`}});
           break;
         }

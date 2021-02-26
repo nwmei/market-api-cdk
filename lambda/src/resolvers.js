@@ -3,7 +3,6 @@ const { StoreItem } =  require('./models/StoreItem');
 const { storeItemResolver } = require('./resolverFunctions/storeItem');
 const { userExistsResolver } = require('./resolverFunctions/userExists');
 const { myItemsResolver}  = require('./resolverFunctions/myItems');
-const {campuses} = require('./constants');
 
 const resolvers = {
   Query: {
@@ -15,7 +14,7 @@ const resolvers = {
         for (let filter of filters) {
           switch (filter.filterType) {
             case "Campus": {
-              const targetEmail = filter.value[0]==='Off-Campus' ? '.com' : campuses[filter.value[0]] + '.edu';
+              const targetEmail = filter.value[0]==='off-campus' ? '.com' : filter.value[0] + '.edu';
               condition.$and.push({"seller.emailAddress": {$regex: `${targetEmail}$`}});
               break;
             }
@@ -31,6 +30,7 @@ const resolvers = {
               const priceMin = parseInt(filter.value[0]);
               const priceMax = parseInt(filter.value[1]);
               condition.$and.push({price: {$gte: priceMin, $lte: priceMax}})
+              console.log(priceMin, priceMax)
               break;
             }
           }
@@ -39,6 +39,7 @@ const resolvers = {
       } else {
         items = await StoreItem.find().skip((page-1)*pageSize).limit(pageSize);
       }
+      console.log(items)
       console.log("STORE ITEMS QUERY CALLED ", items.length)
       return items;
     },
